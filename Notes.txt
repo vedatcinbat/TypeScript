@@ -1,0 +1,58 @@
+/*
+1. Basic Types
+- TypeScript introduces static typing, allowing you to specify variable types.
+- Basics types : number | string | boolean | null | undefined | symbol | any.
+- 'any' type allows for the dynamic behavior you're used to in JavaScript but type to avoid it to leverage TypeScript's full power.
+*/
+let isDone: boolean = false;
+let age: number = 42;
+let userName: string = 'Vedat Cinbat';
+
+
+
+/*
+2. Interfaces
+- Similar to C#, Interfaces in TS define constract within your code and are used to define the shape
+of objects.
+- THey are powerful for defining complex data structures.
+*/
+interface IUser {
+    id: number;
+    name: string;
+}
+
+let user: IUser = {
+    id: 1,
+    name: 'Vedat Cinbat'
+}
+
+console.log(user);
+
+
+/*
+3. Classes
+- TypeScript classes are similar to those in C# and ES6
+- They support inheritance, modifiers like 'public', 'private', 'protected', 'readonly' etc.
+
+*/
+class Person {
+    private name: string;
+  
+    constructor(name: string) {
+      this.name = name;
+    }
+  
+    public getName(): string {
+      return this.name;
+    }
+  }
+  
+  interface IPerson {
+    getName(): string;
+  }
+  
+  let person: IPerson = new Person("John");
+  console.log(person.getName());
+
+
+
