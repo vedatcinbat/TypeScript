@@ -1,4 +1,4 @@
-function greet(person, date) {
+function Greet(person, date) {
     console.log("Hello ".concat(person, ", today is ").concat(date.toDateString(), "!"));
 }
-greet('Brendan', new Date("2021-07-01"));
+Greet('Brendan', new Date("2021-07-01"));
