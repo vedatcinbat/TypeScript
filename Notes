@@ -192,6 +192,51 @@ if(person.role == Role.AUTHOR) {
 }
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 * Any Type
+Any * --> Any kind of value, no specific type assignment.
+-> Dont use it, because it is not a good practice.
+-> Use TS features to avoid using any type.
+
+let favoriteActivities: any[];
+favoriteActivities = ['Sports', 2, true];
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* Union Types
+function combine(input1: number | string, input2: number | string) {
+    let result;
+    if(typeof input1 === 'number' && typeof input2 === 'number') {
+        result = input1 + input2;
+    }else {
+        result = input1.toString() + input2.toString();
+    }
+    return result;
+}
+
+const combinedAges = combine(30, 26);
+console.log(combinedAges);
+
+const combinedNames = combine('Max', 'Anna');
+console.log(combinedNames);
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* Literal Types
+function combine(input1: number | string, input2: number | string, resultConversion: 'as-number' | 'as-text') {
+    let result;
+    if(typeof input1 === 'number' && typeof input2 === 'number' || resultConversion == 'as-number') {
+        result = +input1 + +input2;
+    }else {
+        result = input1.toString() + input2.toString();
+    }
+    return result;
+}
+
+const combinedAges = combine(30, 26, 'as-numbe'); --> This will throw an error because 'as-numbe' is not a valid literal type.
+console.log(combinedAges);
+
+const combinedStringAges = combine('30', '26', 'as-number');
+console.log(combinedStringAges);
+
+const combinedNames = combine('Max', 'Anna', 'as-text');
+console.log(combinedNames);
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* Type Aliases / Custom Types
 
 
 

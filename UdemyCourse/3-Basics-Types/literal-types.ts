@@ -6,6 +6,7 @@ function combine(input1: number | string, input2: number | string, resultConvers
         result = input1.toString() + input2.toString();
     }
     return result;
+
     /*
     * if(resultConversion === 'as-number') {
         return +result;
