@@ -1,7 +1,7 @@
 const person = {
     name: 'Vedat',
     age: 21,
-    hobbies: ['Sports', 'Cooking']
+    hobbies: ['Sports', 'Cooking'] // hobbies: string[]
 }
 
 let favoriteActivities: string[];
