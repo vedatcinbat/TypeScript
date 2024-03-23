@@ -364,7 +364,7 @@ generateError('An error occurred!', 500);
 -> Union types, literal types, type aliases, function types, unknown types, and never types are also core types.
 -> TypeScript helps you avoid errors and bugs in your code.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-* TypeScript Compiler & Configuration
+
 
 
 
