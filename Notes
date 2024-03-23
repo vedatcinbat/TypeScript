@@ -237,6 +237,137 @@ const combinedNames = combine('Max', 'Anna', 'as-text');
 console.log(combinedNames);
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 * Type Aliases / Custom Types
+type Combinable = number | string;
+type ConversionDescriptor = 'as-number' | 'as-text';
+
+function combine(
+    input1: Combinable,
+    input2: Combinable,
+    resultConversion: ConversionDescriptor)
+    ....
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* Type Aliases & Object Types
+-> Type aliases can be used to "create" your own types. You're not limited to storing union types though - you can also provide an alias to a (possibly complex) object type.
+-> For example:
+    type User = { name: string; age: number };
+    const u1: User = { name: 'Max', age: 30 }; // this works!
+
+-> This allows you to avoid unnecessary repetition and manage types centrally.
+
+-> For example, you can simplify this code:
+
+function greet(user: { name: string; age: number }) {
+  console.log('Hi, I am ' + user.name);
+}
+
+function isOlder(user: { name: string; age: number }, checkAge: number) {
+  return checkAge > user.age;
+}
+
+To:
+
+type User = { name: string; age: number };
+
+function greet(user: User) {
+  console.log('Hi, I am ' + user.name);
+}
+
+function isOlder(user: User, checkAge: number) {
+  return checkAge > user.age;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* Function Return Types & Void
+-> void : No return value.
+-> If you don't return anything from a function, it is void.
+
+function add(n1: number, n2: number): number {
+    return n1 + n2;
+}
+
+function printResult(num: number): void {
+    console.log('Result: ' + num);
+}
+
+printResult(add(5, 12))
+
+// let someValue: undefined;
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* Functions as Types
+function add(n1: number, n2: number): number {
+    return n1 + n2;
+}
+function printResult(num: number): void {
+    console.log('Result: ' + num);
+}
+printResult(add(5, 12))
+
+// let combinedValues: Function;
+let combinedValues: (a: number, b: number) => number;
+// -> combinedValues is a function that takes two parameters, both numbers, and returns a number.
+
+combinedValues = add;
+//combinedValues = printResult; --> Error: Type '(num: number) => void' is not assignable to type '(a: number, b: number) => number'.
+//combinedValues = 5; -> Error: Type '5' is not assignable to type '(a: number, b: number) => number'.
+
+console.log(combinedValues(8, 8));
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* Function Types & Callbacks
+...
+
+function printResult(num: number): void {
+    console.log('Result: ' + num);
+}
+
+function addAndHandle(n1: number, n2: number, cb: (num: number) => void) {
+    const result = n1 + n2;
+    cb(result);
+}
+
+addAndHandle(10, 20, (result) => {
+    console.log(result);
+})
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* The Unknown Type
+-> unknown : Better than any type, because it is more restrictive.
+-> It is a type-safe type, because it is not assignable to other types.
+-> It is a better alternative to any type.
+
+let userInput: unknown;
+let userName: string;
+
+userInput = 5;
+userInput = 'Max';
+
+console.log(userInput);
+
+if(typeof userInput === 'string') {
+    userName = userInput;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* The Never Type
+-> never : It is a type that functions return, when they never return a value.
+-> It is a type that functions return, when they throw an error.
+-> It is a type that functions return, when they have an infinite loop.
+
+function generateError(message: string, code: number): never {
+    throw {message: message, errorCode: code};
+    //while(true) {}
+}
+
+
+generateError('An error occurred!', 500);
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* Wrap Up
+-> TypeScript adds types to JavaScript.
+-> Core types in TypeScript are number, string, boolean, object, array, tuple, enum, any, unknown, never.
+-> Union types, literal types, type aliases, function types, unknown types, and never types are also core types.
+-> TypeScript helps you avoid errors and bugs in your code.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* TypeScript Compiler & Configuration
+
+
+
 
 
 
