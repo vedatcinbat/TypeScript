@@ -91,14 +91,107 @@ let resultPhrase = "The result is: ";
 add(number1, number2, printResult, resultPhrase);
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 * Object Types
+objects {age: 30} --> Any JavaScript object, more specific types (type of object).
 
+const person: object = {
+    name: 'Vedat',
+    age: 21
+}
+-> But object type is not specific, so we can't access the properties of the object.
 
+const person: {
+    name: string;
+    age: number;
+} = {
+    name: 'Vedat',
+    age: 21
+}
 
+console.log(person.name);
 
+* Nested Objects & Types
+-> Of course object types can also be created for nested objects.
+->Let's say you have this JavaScript object:
+const product = {
+  id: 'abc1',
+  price: 12.99,
+  tags: ['great-offer', 'hot-and-new'],
+  details: {
+    title: 'Red Carpet',
+    description: 'A great carpet - almost brand-new!'
+  }
+}
 
+-> This would be the type of such an object:
+{
+  id: string;
+  price: number;
+  tags: string[];
+  details: {
+    title: string;
+    description: string;
+  }
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* Array Types
+Array [1, 2, 3] --> Any JavaScript array, type can be flexible or strict (regarding the element types).
 
+const person = {
+    name: 'Vedat',
+    age: 21,
+    hobbies: ['Sports', 'Cooking']
+}
 
+let favoriteActivities: string[];
+favoriteActivities = ["Sports"];
 
+console.log(person.name);
+
+for(const hobby of person.hobbies) {
+    console.log(hobby.toUpperCase());
+    // console.log(hobby.map()) // !!! Error: Because map is can be used with arrays and 'hobby' is string not array !!!
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* Working With Tuples
+Tuple [1, 2] --> Fixed-length array where the type of each element is known, but need not be the same.
+
+const person: {
+    ...
+    role: [number, string],
+} = {
+    ...
+    role: [2, 'author']
+}
+
+//person.role.push("admin"); --> Push is allowed in tuples, but it is not recommended because it is not a good practice.
+//person.role[1] = 10; --> Gives an error because the type of the second element is string.
+
+//person.role = [0, 'admin']; --> This is allowed because the type of the elements are correct.
+//person.role = [0, 'admin', 'user']; --> This is not allowed because the length of the tuple is fixed.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* Enums
+Enum enum {NEW, OLD} --> Added by TS, Automatically enumerated global constant identifiers.
+
+enum Role {
+    ADMIN = 'ADMIN',
+    READ_ONLY = 100,
+    AUTHOR = 101
+}
+
+const person = {
+    name: 'Vedat',
+    age: 21,
+    hobbies: ['Sports', 'Cooking'],
+    role: Role.AUTHOR
+}
+
+console.log(person);
+
+if(person.role == Role.AUTHOR) {
+    console.log('is AUTHOR');
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* Any Type
 
 
 
